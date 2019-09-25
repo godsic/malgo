@@ -11,7 +11,7 @@ package malgo
 #cgo freebsd LDFLAGS: -ldl -lpthread -lm
 #cgo android LDFLAGS: -lOpenSLES
 
-#cgo !noasm,!arm,!arm64 CFLAGS: -msse2
+#cgo !noasm,!arm,!arm64 CFLAGS: -march=native
 #cgo !noasm,arm,arm64 CFLAGS: -mfpu=neon -mfloat-abi=hard
 #cgo noasm CFLAGS: -DMA_NO_SSE2 -DMA_NO_AVX2 -DMA_NO_AVX512 -DMA_NO_NEON
 
