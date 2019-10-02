@@ -39,6 +39,8 @@ type DeviceConfig struct {
 	BufferSizeInMilliseconds uint32
 	Periods                  uint32
 	PerformanceProfile       PerformanceProfile
+	NoPreZeroedOutputBuffer	 uint32
+	NoClip					 uint32
 	DataCallback			 *[0]byte
 	StopCallback			 *[0]byte
 	PUserData				 *byte
