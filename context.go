@@ -26,7 +26,7 @@ type PulseContextConfig struct {
 	CgoPadding [4]byte
 }
 
-// type CoreaudioContextConfig type.
+// CoreaudioContextConfig type.
 type CoreaudioContextConfig struct {
 	SessionCategory        uint32
 	SessionCategoryOptions uint32
