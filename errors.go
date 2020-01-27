@@ -37,6 +37,7 @@ var (
 	ErrFailedToConfigureBackendDevice = fmt.Errorf("%s: failed to configure backend device", errTag)
 	ErrFailedToCreateMutex            = fmt.Errorf("%s: failed to create mutex", errTag)
 	ErrFailedToCreateEvent            = fmt.Errorf("%s: failed to create event", errTag)
+	ErrFailedToCreateSemaphore        = fmt.Errorf("%s: failed to create semaphore", errTag)
 	ErrFailedToCreateThread           = fmt.Errorf("%s: failed to create thread", errTag)
 )
 
@@ -107,6 +108,8 @@ func errorFromResult(r Result) error {
 		return ErrFailedToCreateMutex
 	case FailedToCreateEvent:
 		return ErrFailedToCreateEvent
+	case FailedToCreateSemaphore:
+		return ErrFailedToCreateSemaphore
 	case FailedToCreateThread:
 		return ErrFailedToCreateThread
 	default:

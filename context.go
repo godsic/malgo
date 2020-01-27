@@ -23,7 +23,13 @@ type PulseContextConfig struct {
 	// Enables autospawning of the PulseAudio daemon if necessary.
 	TryAutoSpawn uint32
 	// Padding
-	CgoPadding		[4]byte
+	CgoPadding [4]byte
+}
+
+// type CoreaudioContextConfig type.
+type CoreaudioContextConfig struct {
+	SessionCategory        uint32
+	SessionCategoryOptions uint32
 }
 
 // JackContextConfig type.
@@ -31,15 +37,16 @@ type JackContextConfig struct {
 	PClientName    *byte
 	TryStartServer uint32
 	// Padding
-	CgoPadding 		[4]byte
+	CgoPadding [4]byte
 }
 
 // ContextConfig type.
 type ContextConfig struct {
-	LogCallback	   *[0]byte
+	LogCallback    *[0]byte
 	ThreadPriority ThreadPriority
 	Alsa           AlsaContextConfig
 	Pulse          PulseContextConfig
+	Coreaudio      CoreaudioContextConfig
 	Jack           JackContextConfig
 }
 

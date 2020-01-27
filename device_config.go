@@ -6,8 +6,10 @@ import "unsafe"
 
 // WasapiDeviceConfig type.
 type WasapiDeviceConfig struct {
-	NoAutoConvertSRC	uint32
-	NoDefaultQualitySRC	uint32
+	NoAutoConvertSRC     uint32
+	NoDefaultQualitySRC  uint32
+	NoAutoStreamRouting  uint32
+	NoHardwareOffloading uint32
 }
 
 // AlsaDeviceConfig type.
@@ -39,11 +41,11 @@ type DeviceConfig struct {
 	BufferSizeInMilliseconds uint32
 	Periods                  uint32
 	PerformanceProfile       PerformanceProfile
-	NoPreZeroedOutputBuffer	 uint32
-	NoClip					 uint32
-	DataCallback			 *[0]byte
-	StopCallback			 *[0]byte
-	PUserData				 *byte
+	NoPreZeroedOutputBuffer  uint32
+	NoClip                   uint32
+	DataCallback             *[0]byte
+	StopCallback             *[0]byte
+	PUserData                *byte
 	Playback                 SubConfig
 	Capture                  SubConfig
 	Wasapi                   WasapiDeviceConfig

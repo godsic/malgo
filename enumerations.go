@@ -124,7 +124,6 @@ const (
 	FailedToConfigureBackendDevice = -310
 	FailedToCreateMutex            = -311
 	FailedToCreateEvent            = -312
-	FailedToCreateThread           = -313
+	FailedToCreateSemaphore        = -313
+	FailedToCreateThread           = -314
 )
-
-const ()
