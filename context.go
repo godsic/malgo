@@ -40,14 +40,24 @@ type JackContextConfig struct {
 	CgoPadding [4]byte
 }
 
+// AllocationCallbacks type
+type AllocationCallbacks struct {
+	PUserData  *byte
+	OnMalloc   *[0]byte
+	OnRealloc  *[0]byte
+	OnFree     *byte
+	CgoPadding [4]byte
+}
+
 // ContextConfig type.
 type ContextConfig struct {
-	LogCallback    *[0]byte
-	ThreadPriority ThreadPriority
-	Alsa           AlsaContextConfig
-	Pulse          PulseContextConfig
-	Coreaudio      CoreaudioContextConfig
-	Jack           JackContextConfig
+	LogCallback         *[0]byte
+	ThreadPriority      ThreadPriority
+	AllocationCallbacks AllocationCallbacks
+	Alsa                AlsaContextConfig
+	Pulse               PulseContextConfig
+	Coreaudio           CoreaudioContextConfig
+	Jack                JackContextConfig
 }
 
 func (d *ContextConfig) cptr() *C.ma_context_config {
@@ -141,7 +151,7 @@ type AllocatedContext struct {
 // When the application no longer needs the context instance, it needs to call Free() .
 func InitContext(backends []Backend, config ContextConfig, logProc LogProc) (*AllocatedContext, error) {
 	C.goSetContextConfigCallbacks(config.cptr())
-	ctx := AllocatedContext{Context: Context(C.ma_malloc(C.size_t(unsafe.Sizeof(C.ma_context{}))))}
+	ctx := AllocatedContext{Context: Context(C.ma_aligned_malloc(C.size_t(unsafe.Sizeof(C.ma_context{})), C.MA_SIMD_ALIGNMENT, nil))}
 	if ctx.Context == 0 {
 		return nil, ErrOutOfMemory
 	}
@@ -152,7 +162,6 @@ func InitContext(backends []Backend, config ContextConfig, logProc LogProc) (*Al
 	if backendCountArg > 0 {
 		backendsArg = (*C.ma_backend)(unsafe.Pointer((*reflect.SliceHeader)(unsafe.Pointer(&backends)).Data))
 	}
-
 	result := C.ma_context_init(backendsArg, backendCountArg, config.cptr(), ctx.cptr())
 	err := errorFromResult(Result(result))
 	if err != nil {
@@ -170,6 +179,6 @@ func (ctx *AllocatedContext) Free() {
 		return
 	}
 	ctx.SetLogProc(nil)
-	C.ma_free(unsafe.Pointer(ctx.cptr()))
+	C.ma_aligned_free(unsafe.Pointer(ctx.cptr()), nil)
 	ctx.Context = 0
 }

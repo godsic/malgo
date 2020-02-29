@@ -4,6 +4,23 @@ package malgo
 import "C"
 import "unsafe"
 
+// Linear type
+type Linear struct {
+	LpfCount uint32
+}
+
+// Speex type
+type Speex struct {
+	Quality int32
+}
+
+// ResamplingConfig type
+type ResamplingConfig struct {
+	Algorithm uint32
+	Linear    Linear
+	Speex     Speex
+}
+
 // WasapiDeviceConfig type.
 type WasapiDeviceConfig struct {
 	NoAutoConvertSRC     uint32
@@ -37,8 +54,8 @@ type SubConfig struct {
 type DeviceConfig struct {
 	DeviceType               DeviceType
 	SampleRate               uint32
-	BufferSizeInFrames       uint32
-	BufferSizeInMilliseconds uint32
+	PeriodSizeInFrames       uint32
+	PeriodSizeInMilliseconds uint32
 	Periods                  uint32
 	PerformanceProfile       PerformanceProfile
 	NoPreZeroedOutputBuffer  uint32
@@ -46,6 +63,7 @@ type DeviceConfig struct {
 	DataCallback             *[0]byte
 	StopCallback             *[0]byte
 	PUserData                *byte
+	Resampling               ResamplingConfig
 	Playback                 SubConfig
 	Capture                  SubConfig
 	Wasapi                   WasapiDeviceConfig

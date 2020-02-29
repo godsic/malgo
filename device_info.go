@@ -8,6 +8,11 @@ import (
 	"unsafe"
 )
 
+// X_private type
+type X_private struct {
+	IsDefault uint32
+}
+
 // DeviceID type.
 type DeviceID [unsafe.Sizeof(C.ma_device_id{})]byte
 
@@ -35,6 +40,7 @@ type DeviceInfo struct {
 	MaxChannels   uint32
 	MinSampleRate uint32
 	MaxSampleRate uint32
+	X_private     X_private
 }
 
 // Name returns the name of the device.
