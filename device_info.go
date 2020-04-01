@@ -8,8 +8,8 @@ import (
 	"unsafe"
 )
 
-// X_private type
-type X_private struct {
+// Xprivate type
+type Xprivate struct {
 	IsDefault uint32
 }
 
@@ -40,7 +40,7 @@ type DeviceInfo struct {
 	MaxChannels   uint32
 	MinSampleRate uint32
 	MaxSampleRate uint32
-	X_private     X_private
+	Xprivate      Xprivate
 }
 
 // Name returns the name of the device.
