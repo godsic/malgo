@@ -31,7 +31,10 @@ type WasapiDeviceConfig struct {
 
 // AlsaDeviceConfig type.
 type AlsaDeviceConfig struct {
-	NoMMap uint32
+	NoMMap         uint32
+	NoAutoFormat   uint32
+	NoAutoChannels uint32
+	NoAutoResample uint32
 }
 
 // PulseDeviceConfig type.
