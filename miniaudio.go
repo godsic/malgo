@@ -2,7 +2,7 @@
 package malgo
 
 /*
-#cgo CFLAGS: -std=gnu99 -O3 -DMA_NO_DECODING -DMA_NO_ENCODING -DMA_NO_GENERATION
+#cgo CFLAGS: -std=gnu99 -O3 -DMA_NO_GENERATION
 #cgo ma_debug CFLAGS: -DMAL_DEBUG_OUTPUT=1
 
 #cgo linux LDFLAGS: -ldl -lpthread -lm

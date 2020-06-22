@@ -53,6 +53,8 @@ type AllocationCallbacks struct {
 type ContextConfig struct {
 	LogCallback         *[0]byte
 	ThreadPriority      ThreadPriority
+	ThreadStackSize     uint64
+	PUserData           *byte
 	AllocationCallbacks AllocationCallbacks
 	Alsa                AlsaContextConfig
 	Pulse               PulseContextConfig
