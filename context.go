@@ -42,11 +42,11 @@ type JackContextConfig struct {
 
 // AllocationCallbacks type
 type AllocationCallbacks struct {
-	PUserData  *byte
-	OnMalloc   *[0]byte
-	OnRealloc  *[0]byte
-	OnFree     *byte
-	CgoPadding [4]byte
+	PUserData *byte
+	OnMalloc  *[0]byte
+	OnRealloc *[0]byte
+	OnFree    *byte
+	// CgoPadding [4]byte
 }
 
 // ContextConfig type.
