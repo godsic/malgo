@@ -1,5 +1,4 @@
-#ifndef H_MALGO
-#define H_MALGO
+#pragma once
 
 #include "miniaudio.h"
 
@@ -16,6 +15,4 @@ void goSetDeviceConfigCallbacks(ma_device_config* pConfig);
 
 #ifdef __cplusplus
 }
-#endif
-
 #endif
